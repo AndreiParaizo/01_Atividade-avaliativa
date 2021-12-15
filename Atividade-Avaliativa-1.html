@@ -178,97 +178,113 @@ pre code {
 <pre><code>## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()</code></pre>
+<pre class="r"><code>library(readr)
+frango_dieta &lt;- read_csv(&quot;dados/brutos/frango_dieta.csv&quot;)</code></pre>
+<pre><code>## Rows: 578 Columns: 4</code></pre>
+<pre><code>## -- Column specification --------------------------------------------------------
+## Delimiter: &quot;,&quot;
+## dbl (4): peso, tempo, frango, dieta</code></pre>
+<pre><code>## 
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<pre class="r"><code>View(frango_dieta)
+library(readr)
+dados_co2 &lt;- read_csv(&quot;dados/brutos/dados_co2.csv&quot;)</code></pre>
+<pre><code>## Rows: 39 Columns: 13</code></pre>
+<pre><code>## -- Column specification --------------------------------------------------------
+## Delimiter: &quot;,&quot;
+## dbl (13): ano, jan, fev, mar, abr, mai, jun, jul, ago, set, out, nov, dez</code></pre>
+<pre><code>## 
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<pre class="r"><code>View(dados_co2)</code></pre>
 <p><strong>Questao 01</strong> <strong>a</strong> O erro é que ele considera a mala mais pesada sendo a que representa o valor do quartis superior e análise de análise que pelo boxplot existem malas mais pesadas entre esse quartil e o limite superior (29kg), onde está localizado 25% da amostra (malas). Portanto, 23kg não representa a mala mais pesada da distribuição.</p>
 <p><strong>b</strong> A mediana é representada pelo segundo quartil, assim, o seu valor é de 17kg.</p>
 <p><strong>c</strong> A distância interquartílica é a diferença entre o quartil superior pelo quartil inferior, assim, a distância seria 23 - 10 = 13.</p>
 <p><strong>d</strong> A quantidade de malas presente entre 5kg e 10kg está no primeiro quartil que corresponde a 25% do total da amostra, assim, corresponderia a 25% de 240 malas, ou seja, 60 malas.</p>
 <p><strong>Questao 2</strong> Obtive a soma de todas as médias dos 30 alunos, multiplicando 30 pela média aritmética das notas, ou seja, 6.40 encontrando como resultado 192. Da mesma forma, obtive a soma total das médias dos outros 50 alunos da outra turma, multiplicando o total de alunos (50) por 5,20 tendo como total 260. Feito isso, somei a soma total das médias das duas turma (192 + 260 = 452) e dividi por 80 (total de alunos correspondentes as duas turmas) (452/80) . Assim, obtive que a média aritmética dos 80 alunos é 5.65. Alternativa A.</p>
 <p><strong>Questao 3</strong></p>
-<pre class="r"><code>X  &lt;- c ( 68 , 70 , 72 , 58 , 90 , 110 , 68 , 70 , 72 , 80 , 80 , 67 , 90 , 94 , 100 , 80 , 75 , 79 , 84 , 90 )</code></pre>
+<pre class="r"><code>X  &lt;- c ( 68 , 70 , 72 , 58 , 90 , 110 , 68 , 70 , 72 , 80 , 80 , 67 , 90 , 94 , 100 , 80 , 75 , 79 , 84 , 90 )
+(110:58)</code></pre>
+<pre><code>##  [1] 110 109 108 107 106 105 104 103 102 101 100  99  98  97  96  95  94  93  92
+## [20]  91  90  89  88  87  86  85  84  83  82  81  80  79  78  77  76  75  74  73
+## [39]  72  71  70  69  68  67  66  65  64  63  62  61  60  59  58</code></pre>
 <p><strong>b</strong> Média = 79,85; Primeiro quartil = 70,0; Mediana = 79,5; Quartil Terceiro = 90; Desvio padrão = 12.78681</p>
 <p>Para encontrar essa resposta, utilizei os seguintes códigos</p>
-<pre class="r"><code>&quot;média ( X )
-
-quantil ( X )
-
-mediana ( X )
-
-sd ( X )&quot;</code></pre>
-<pre><code>## [1] &quot;média ( X )\n\nquantil ( X )\n\nmediana ( X )\n\nsd ( X )&quot;</code></pre>
+<pre class="r"><code>mean ( X )</code></pre>
+<pre><code>## [1] 79.85</code></pre>
+<pre class="r"><code>quantile ( X )</code></pre>
+<pre><code>##    0%   25%   50%   75%  100% 
+##  58.0  70.0  79.5  90.0 110.0</code></pre>
+<pre class="r"><code>median ( X )</code></pre>
+<pre><code>## [1] 79.5</code></pre>
+<pre class="r"><code>sd ( X )</code></pre>
+<pre><code>## [1] 12.78681</code></pre>
 <p><strong>c</strong> No histograma, é possível perceber uma certa assimetria entre os valores, por isso, acredito que a mediana representa a melhor medida central do conjunto de dados.</p>
-<p><strong>Questao 4</strong> <strong>a</strong> Importei o dataset para o Rstudio com o seguinte código</p>
-<pre class="r"><code>&quot;frango_dieta  &lt;- read_csv (  dados / brutos / frango_dieta.csv )&quot;</code></pre>
-<pre><code>## [1] &quot;frango_dieta  &lt;- read_csv (  dados / brutos / frango_dieta.csv )&quot;</code></pre>
+<p><strong>Questao 4</strong> <strong>a</strong></p>
 <p>Ao analisar o conjunto de dados foi possível identificar que cada coluna representa uma variável (peso, tempo, frango, dieta), cada linha apresentava sobre as variáveis e cada célula apresentava uma única observação, logo, este dataset está organizado na forma tidy</p>
 <p><strong>b</strong> Usando o codigo</p>
-<pre class="r"><code>&quot;médio ( frango_dieta $ peso )&quot;</code></pre>
-<pre><code>## [1] &quot;médio ( frango_dieta $ peso )&quot;</code></pre>
+<pre class="r"><code>mean(frango_dieta $ peso)</code></pre>
+<pre><code>## [1] 121.8183</code></pre>
 <p>Encontrei que a média do peso dos fragos é 121.8183.</p>
 <p><strong>c</strong> Usando o código</p>
-<pre class="r"><code>&quot;sd ( frango_dieta $ peso )&quot;</code></pre>
-<pre><code>## [1] &quot;sd ( frango_dieta $ peso )&quot;</code></pre>
+<pre class="r"><code>sd( frango_dieta $ peso )</code></pre>
+<pre><code>## [1] 71.07196</code></pre>
 <p>Encontrei como desvio padrão o valor 71.07196</p>
 <p><strong>d</strong> A variável peso é quantitativa contínua. A variável tempo é quantitativa discreta A variável é frango qualitativa nominal A variável dieta é qualitativa nominal</p>
 <p><strong>Questao 5</strong></p>
-<pre class="r"><code>&quot;N  &lt;-  1000 
-x  &lt;- rnbinom ( N , 4 , 0,5 )
-hist (
-x ,
- xlim  = c (min ( x ), max ( x )),
-  probabilidade  =  T ,
- Nclass  = max ( x ) - min ( x ) +  1 ,
- col  =  &#39; azul claro &#39; , XLAB  =  &#39;  &#39; , ylab  =  &#39;  &#39; , axes  =  F ,
- main  =  &#39; Positivo enviesado &#39;
+<pre class="r"><code>#---------------------------------------------------------
+N &lt;- 1000
+x &lt;- rnbinom(N, 4, .5)
+hist(
+x,
+xlim = c(min(x), max(x)),
+probability = T,
+nclass = max(x) - min(x) + 1,
+col = &#39;lightblue&#39;, xlab = &#39; &#39;, ylab = &#39; &#39;, axes = F,
+main = &#39;Positive Skewed&#39;
 )
-linhas (densidade ( x , bw  =  1 ), col  =  &#39; vermelho &#39; , lwd  =  3 )&quot;</code></pre>
-<pre><code>## [1] &quot;N  &lt;-  1000 \nx  &lt;- rnbinom ( N , 4 , 0,5 )\nhist (\nx ,\n xlim  = c (min ( x ), max ( x )),\n  probabilidade  =  T ,\n Nclass  = max ( x ) - min ( x ) +  1 ,\n col  =  &#39; azul claro &#39; , XLAB  =  &#39;  &#39; , ylab  =  &#39;  &#39; , axes  =  F ,\n main  =  &#39; Positivo enviesado &#39;\n)\nlinhas (densidade ( x , bw  =  1 ), col  =  &#39; vermelho &#39; , lwd  =  3 )&quot;</code></pre>
+lines(density(x, bw = 1), col = &#39;red&#39;, lwd = 3)</code></pre>
+<p><img src="data:image/png;base64,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EAEFKmgjIAIKVNBGQAQUqKCNgAgoUEEbARFQoII2AiKgQAVtBERAgQraCIiAAhW0ERABBSpoIyACClTQRkAEFKigjYAIKFBBGwERUKCCNgIioEAFbQREQIEK2giIgAIVtBEQAQUqaCMgAgpU0EZABBSooI2ACChQQRsBEVCggjYCIqBABW0ERECBCtoIiIACFbQREAEFKmgjIAIKVNBGQAQUqKCNgAgoUEEbARFQoII2AiKgQAVtBERAgQraCIiAAhW0ERABBSpoIyACClTQRkAEFKigjYAIKFBBGwERUKCCNgIioEAFbQREQIEK2giIgAIVtBEQAQUqaCMgAgpU0EZABBSooI2ACChQQRsBEVCggjYCIqBABW0ERECBCtoIiIACFbQREAEFKmgjIAIKVNBGQAQUqKCNgAgoUEEbARFQoII2AiKgQAVtBERAgQraCIiAAhW0ERABBSpoIyACClTQRkAEFKigjYAIKFBBGwERUKCCNgIioEAFbQREQIEK2giIgAIVtBEQAQUqaCMgAgpU0EZABBSooI2ACChQQRsBEVCggjYCIqBABW0ERECBCtoIiIACFbQREAEFKmgjIAIKVNBGQAQUqKCNgAgoUEEbARFQoII2AiKgQAVtBERAgQraCIiAAhW0ERABBSpoIyACClTQRkAEFKigjYAIKFBBGwERUKCCNgIioEAFbQREQIEK2giIgAIVtBEQAQUqaCMgAgpU0EZABBSooI2ACChQQRsBEVCggjYCIqBABW0ERECBCtoIiIACFbQREAEFKmgjIAIKVNBGQAQUqKCNgAgoUEEbARFQoII2AiKgQAVtBCRVQJ+Cyq8UGNbGaZkooNF8CiisTxunZaqAZlkpcE8bp6WAAhW0cVoKKFBBG6elgAIVtHFaCihQQRunpYACFbRxWgooUEEbp6WAAhW0cVoKKFBBG6elgAIVtHFaCihQQRunpYACFbRxWgooUEEbp6WAAhW0cVoKKFBBG6elgAIVtHFaCihQQRunpYACFbRxWgooUEEbp6WAAhW0cVoKKFBBG6elgAIVtHFaCihQQRunpYACFbRxWgooUEEbp6WAAhW0cVoKKFBBG6dljYA+BT33E1DIp43TsnxA52znqIoKKKxPG6dljYBOO9Dddt6rqIDC+rRxWq48oBPqebOhAgrr08ZpueaATq5nf0MFFNanjdNy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HB7s+flV0bQENMlgnpUaHB58+BLS2mcbHQKaZDDPSg0ODz78cnlCuiICmmQwz0oNzjMooxkIaJLBPCs1OOeg/ei6CWiSwTwrNbjEoJCuk4AmGcyzUoNLDO6evVfR1RHQJIN5VmpwicHT5U+jKyqkBQhoksE8KzW4xOD19aNCugYCmmQwz0oNLjF46y/YT8mokM5PQJMM5lmpwSUGbwX0YFpItXQuAppkMM9KDS4xeC+gB5NDqqUPEdAkg3lWanCJwfu/wRT/qyJqGiegSQbzrNTgEoOTAjpHSFV1FAFNMphnpQaXGHzggLH79XI7ioAmGcyzUoNLDD4U0IPCIV2j2dMz9w1Wkec8EFCDpQ/Ye8rUDlkts6dn7husIs95IKAGSx/w3tlTu2lFzZ6euW+witAj7MCl2oFb2uzpmfsGq6j9Uwctq129Gc2enrlvENi02o0cNPcnK6AAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQf8BAQyaFBC8Sw8AAAAASUVORK5CYII=" width="672" /></p>
+<pre class="r"><code>#---------------------------------------------------------</code></pre>
 <p>Analisando esse gráfico, é possível perceber que a disposição dos valores é assimétrica, logo, a mediana é a melhor medida central para representar esses dados.</p>
-<p><strong>Questao 6</strong> <strong>a</strong> Importei o dataset com o código</p>
-<pre class="r"><code>&quot;dados_co2  &lt;- read_csv (  dados / brutos / dados_co2.csv  )&quot;</code></pre>
-<pre><code>## [1] &quot;dados_co2  &lt;- read_csv (  dados / brutos / dados_co2.csv  )&quot;</code></pre>
+<p><strong>Questao 6</strong> <strong>a</strong></p>
 <p><strong>b</strong> Não está no formato tidy, pois, as colunas não representam variáveis, nesse caso, acredito que deveria haver 3 colunas (ano, mês, co2).</p>
 <p><strong>c</strong> Organize o conjunto de dados na forma organizada com o seguinte código</p>
-<pre class="r"><code>&quot;dados_co2 % &gt; %                
+<pre class="r"><code>dados_co2 %&gt;%                
   pivot_longer (
     ! ano ,              
-     names_to  =   mes  ,    
-     values_to  =   ppm    
-  )
-## # A tibble: 468 x 3
-##      ano mes     ppm
-##    &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt;
-##  1  1959 jan    315.
-##  2  1959 fev    316.
-##  3  1959 mar    316.
-##  4  1959 abr    318.
-##  5  1959 mai    318.
-##  6  1959 jun    318 
-##  7  1959 jul    316.
-##  8  1959 ago    315.
-##  9  1959 set    314.
-## 10  1959 out    313.
-## # ... with 458 more rows&quot;</code></pre>
-<pre><code>## [1] &quot;dados_co2 % &gt; %                \n  pivot_longer (\n    ! ano ,              \n     names_to  =   mes  ,    \n     values_to  =   ppm    \n  )\n## # A tibble: 468 x 3\n##      ano mes     ppm\n##    &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt;\n##  1  1959 jan    315.\n##  2  1959 fev    316.\n##  3  1959 mar    316.\n##  4  1959 abr    318.\n##  5  1959 mai    318.\n##  6  1959 jun    318 \n##  7  1959 jul    316.\n##  8  1959 ago    315.\n##  9  1959 set    314.\n## 10  1959 out    313.\n## # ... with 458 more rows&quot;</code></pre>
+     names_to  =  &quot; ano &quot; ,    
+     values_to  =  &quot; dez &quot;   
+  )</code></pre>
+<pre><code>## # A tibble: 468 x 3
+##      ano ` ano ` ` dez `
+##    &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;
+##  1  1959 jan        315.
+##  2  1959 fev        316.
+##  3  1959 mar        316.
+##  4  1959 abr        318.
+##  5  1959 mai        318.
+##  6  1959 jun        318 
+##  7  1959 jul        316.
+##  8  1959 ago        315.
+##  9  1959 set        314.
+## 10  1959 out        313.
+## # ... with 458 more rows</code></pre>
 <p><strong>d</strong> Produzi e salvei o arquivo com o seguinte código</p>
-<pre class="r"><code>&quot;co2_tidy  &lt;-  dados_co2 % &gt; %&quot;</code></pre>
-<pre><code>## [1] &quot;co2_tidy  &lt;-  dados_co2 % &gt; %&quot;</code></pre>
-<pre class="r"><code>  &quot;pivot_longer (! ano , names_to  = mes , values_to  = ppm)&quot;</code></pre>
-<pre><code>## [1] &quot;pivot_longer (! ano , names_to  = mes , values_to  = ppm)&quot;</code></pre>
-<pre class="r"><code>&quot;write_csv ( co2_tidy , dados / tidy / co2_tidy.csv.)&quot;</code></pre>
-<pre><code>## [1] &quot;write_csv ( co2_tidy , dados / tidy / co2_tidy.csv.)&quot;</code></pre>
+<pre class="r"><code>&quot;co2_tidy  &lt;-  dados_co2 % &gt; %
+  pivot_longer (! ano , names_to  = mes , values_to  = ppm)
+write_csv ( co2_tidy , dados / tidy / co2_tidy.csv.)&quot;</code></pre>
+<pre><code>## [1] &quot;co2_tidy  &lt;-  dados_co2 % &gt; %\n  pivot_longer (! ano , names_to  = mes , values_to  = ppm)\nwrite_csv ( co2_tidy , dados / tidy / co2_tidy.csv.)&quot;</code></pre>
 <p><strong>e</strong> Salvei na variável co2_tidy com o seguinte código</p>
 <pre class="r"><code>&quot;co2_tidy  &lt;- read_csv (  dados / tidy / co2_tidy.csv  )&quot;</code></pre>
 <pre><code>## [1] &quot;co2_tidy  &lt;- read_csv (  dados / tidy / co2_tidy.csv  )&quot;</code></pre>
-<pre class="r"><code>&quot;co2_tidy % &gt; %&quot;</code></pre>
-<pre><code>## [1] &quot;co2_tidy % &gt; %&quot;</code></pre>
-<pre class="r"><code>  &quot;group_by ( ano )% &gt; %&quot;</code></pre>
-<pre><code>## [1] &quot;group_by ( ano )% &gt; %&quot;</code></pre>
-<pre class="r"><code>  &quot;resumir ( mídia  = redondo (média ( ppm ), 2 ))% &gt; %&quot;</code></pre>
-<pre><code>## [1] &quot;resumir ( mídia  = redondo (média ( ppm ), 2 ))% &gt; %&quot;</code></pre>
-<pre class="r"><code>  &quot;ggplot (aes ( ano , media , group  =  1 )) + &quot; </code></pre>
-<pre><code>## [1] &quot;ggplot (aes ( ano , media , group  =  1 )) + &quot;</code></pre>
-<pre class="r"><code>  &quot;geom_line ( color  =   blue  , size  =  1 )&quot;</code></pre>
-<pre><code>## [1] &quot;geom_line ( color  =   blue  , size  =  1 )&quot;</code></pre>
+<pre class="r"><code>&quot;co2_tidy % &gt; %
+  group_by ( ano )% &gt; %
+  resumir ( mídia  = redondo (média ( ppm ), 2 ))% &gt; %
+  ggplot (aes ( ano , media , group  =  1 )) +  
+  geom_line ( color  =   blue  , size  =  1 )&quot;</code></pre>
+<pre><code>## [1] &quot;co2_tidy % &gt; %\n  group_by ( ano )% &gt; %\n  resumir ( mídia  = redondo (média ( ppm ), 2 ))% &gt; %\n  ggplot (aes ( ano , media , group  =  1 )) +  \n  geom_line ( color  =   blue  , size  =  1 )&quot;</code></pre>
 <p>Observando o gráfico, é possível perceber que a variável ppm aumentou com o passar dos anos.</p>
 <p><strong>Questao 7</strong> <strong>a</strong> Criei um tibble da seguinte forma:</p>
 <pre class="r"><code>&quot;tabela_tibble  &lt;- tibble (
@@ -285,34 +301,23 @@ linhas (densidade ( x , bw  =  1 ), col  =  &#39; vermelho &#39; , lwd  =  3 )&q
 <pre><code>## [1] &quot;tabela_tibble  &lt;- tibble (\n   ~ nome ,        ~ altura , ~ peso ,\n    Ana  ,        155 ,      50 ,\n    Ludmilla  ,   158 ,      61 ,\n    Cristina  ,   162 ,      65 ,\n    Tereza  ,     168 ,      68 ,\n    Patrícia  ,   170 ,      69,\n    Mariana  ,    170 ,      65 ,\n    Ana Paula  , 172 ,      82 ,\n    Dirce  ,      173 ,      79 \n)&quot;</code></pre>
 <p><strong>b</strong> A variável nome é uma variável qualitativa nominal A variável altura é uma variável quantitativa contínua A variável peso é uma variável quantitativa contínua</p>
 <p><strong>c</strong> Calculei a média, mediana e desvio padrão da altura e peso usando os seguintes códigos</p>
-<pre class="r"><code>&quot;média ( tabela_tibble $ peso )&quot;</code></pre>
-<pre><code>## [1] &quot;média ( tabela_tibble $ peso )&quot;</code></pre>
-<pre class="r"><code>&quot;mediana ( tabela_tibble $ peso )&quot;</code></pre>
-<pre><code>## [1] &quot;mediana ( tabela_tibble $ peso )&quot;</code></pre>
-<pre class="r"><code>&quot;sd ( tabela_tibble $ peso )&quot;</code></pre>
-<pre><code>## [1] &quot;sd ( tabela_tibble $ peso )&quot;</code></pre>
-<pre class="r"><code>&quot;média ( tabela_tibble $ altura )&quot;</code></pre>
-<pre><code>## [1] &quot;média ( tabela_tibble $ altura )&quot;</code></pre>
-<pre class="r"><code>&quot;mediana ( tabela_tibble $ altura )&quot;</code></pre>
-<pre><code>## [1] &quot;mediana ( tabela_tibble $ altura )&quot;</code></pre>
-<pre class="r"><code>&quot;sd ( tabela_tibble $ altura )&quot;</code></pre>
-<pre><code>## [1] &quot;sd ( tabela_tibble $ altura )&quot;</code></pre>
-<pre class="r"><code>&quot;Para altura encontrei&quot;</code></pre>
-<pre><code>## [1] &quot;Para altura encontrei&quot;</code></pre>
-<pre class="r"><code>&quot;- média = 166&quot;</code></pre>
-<pre><code>## [1] &quot;- média = 166&quot;</code></pre>
-<pre class="r"><code>&quot;- mediana = 169&quot;</code></pre>
-<pre><code>## [1] &quot;- mediana = 169&quot;</code></pre>
-<pre class="r"><code>&quot;desvio padrao = 6,78233&quot;</code></pre>
-<pre><code>## [1] &quot;desvio padrao = 6,78233&quot;</code></pre>
-<pre class="r"><code>&quot;Para peso encontrei&quot;</code></pre>
-<pre><code>## [1] &quot;Para peso encontrei&quot;</code></pre>
-<pre class="r"><code>&quot;- média = 67,375&quot;</code></pre>
-<pre><code>## [1] &quot;- média = 67,375&quot;</code></pre>
-<pre class="r"><code>&quot;- mediana = 66,5&quot;</code></pre>
-<pre><code>## [1] &quot;- mediana = 66,5&quot;</code></pre>
-<pre class="r"><code>&quot;- desvio padrao = 10,04188&quot;</code></pre>
-<pre><code>## [1] &quot;- desvio padrao = 10,04188&quot;</code></pre>
+<pre class="r"><code>&quot;média ( tabela_tibble $ peso )
+mediana ( tabela_tibble $ peso )
+sd ( tabela_tibble $ peso )
+
+média ( tabela_tibble $ altura )
+mediana ( tabela_tibble $ altura )
+sd ( tabela_tibble $ altura )
+Para altura encontrei
+- média = 166
+- mediana = 169
+
+desvio padrao = 6,78233
+Para peso encontrei
+- média = 67,375
+ mediana = 66,5
+- desvio padrao = 10,04188&quot;</code></pre>
+<pre><code>## [1] &quot;média ( tabela_tibble $ peso )\nmediana ( tabela_tibble $ peso )\nsd ( tabela_tibble $ peso )\n\nmédia ( tabela_tibble $ altura )\nmediana ( tabela_tibble $ altura )\nsd ( tabela_tibble $ altura )\nPara altura encontrei\n- média = 166\n- mediana = 169\n\ndesvio padrao = 6,78233\nPara peso encontrei\n- média = 67,375\n mediana = 66,5\n- desvio padrao = 10,04188&quot;</code></pre>
 <p><strong>d</strong> Execute o seguinte código</p>
 <pre class="r"><code>&quot;plot ( tabela_tibble $ peso , tabela_tibble $ altura )&quot;</code></pre>
 <pre><code>## [1] &quot;plot ( tabela_tibble $ peso , tabela_tibble $ altura )&quot;</code></pre>
