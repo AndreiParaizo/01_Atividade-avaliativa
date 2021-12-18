@@ -15,6 +15,12 @@ View(frango_dieta)
 dados_co2 <- read_csv("dados/brutos/dados_co2.csv")
 View(dados_co2)
 
+dados_co2_tidy <- read_csv("dados/tidy/dados_co2_tidy.csv")
+View(dados_co2_tidy)
+
+tabela_1_4_ <- read_csv("dados/brutos/tabela 1 (4).csv")
+View(tabela_1_4_)
+
 ```
 **Questao 01**
 **a** O erro é que ele considera a mala mais pesada sendo a que representa o valor do quartis superior e análise de análise que pelo boxplot existem malas mais pesadas entre esse quartil e o limite superior (29kg), onde está localizado 25% da amostra (malas). Portanto, 23kg não representa a mala mais pesada da distribuição.
@@ -98,7 +104,114 @@ Analisando esse gráfico, é possível perceber que a disposição dos valores �
 
 **Questao 6**
 **a** 
+```{r}
+dados_co2 <- read_csv("dados/brutos/dados_co2.csv")
+```
+**b** 
+Não está no formato tidy, pois, as colunas não representam variáveis, nesse caso, acredito que deveria ter 3 colunas (ano, mês, co2)
+
+**c**
+```{r}
+dados_co2 %>%                
+  pivot_longer (
+    ! ano ,              
+     names_to  =  " ano " ,    
+     values_to  =  " dez "   
+  )
+  
+```
+Obs: O código não roda no rnotebook.
+
+**d**
+```{r}
+dados_co2 <- read_csv("dados/brutos/dados_co2.csv")
 
 
+dados_co2 %>% View()
+```
+```{r}
+dados_co2_tidy <- dados_co2 %>% 
+  pivot_longer(
+    !ano, 
+   names_to = "mes",
+   values_to = "ppm"
+  )
+```
+
+```{r}
+write_csv(dados_co2_tidy, "dados/tidy/dados_co2_tidy.csv")
+```
+
+**e**
+Ao passar dos anos a media esta subindo exponencialmente.
+
+```{r}
+co2_tidy <-  read_csv("dados/tidy/dados_co2_tidy.csv")
+View(co2_tidy)
+
+co2_tidy %>% glimpse()
+```
+
+```{r}
+#-------------------------------------------
+co2_tidy %>% # conjunto de dados
+group_by(ano) %>% # agrupa por ano
+summarise(media = round(mean(ppm), 2)) %>% # calcula a média da variavel ppm em cada grupo
+ggplot(aes(ano, media, group = 1)) + # cria o gráfico
+geom_line(color = "blue", size = 1)
+#-------------------------------------------
+```
+
+Observando o gráfico, é possível perceber que a media da variável ppm aumentou com o passar dos anos.
+
+**Questao 7**
+
+**a**
+```{r}
+tabela_tibble <- tribble(
+  ~nome,       ~altura, ~peso,
+  "Ana",       155,     50,
+  "Ludmilla",  158,     61,
+  "Cristina",  162,     65,
+  "Tereza",    168,     68,
+  "Patrícia",  170,     69,
+  "Mariana",   170,     65,
+  "Ana Paula", 172,     82,
+  "Dirce",     173,     79
+)
+
+```
+
+**b**
+A variável nome é uma variável qualitativa nominal
+A variável altura é uma variável quantitativa contínua
+A variável peso é uma variável quantitativa contínua
+
+**c**
+```{r}
+mean(tabela_tibble$peso)
+median(tabela_tibble$peso)
+sd(tabela_tibble$peso)
+
+mean(tabela_tibble$altura)
+median(tabela_tibble$altura)
+sd(tabela_tibble$altura)
+```
+
+Peso:
+Mediana= 66,5
+Média= 67,375
+Desvio padrão= 9,39
+
+Altura:
+Mediana= 169 
+Média = 166
+Desvio padrão= 6,34
 
 
+**d**
+```{r}
+plot(tabela_1_4_$"peso", tabela_1_4_$"altura" , col = "blue", xlab = "peso", ylab = "altura", main = "tabela 1")
+```
+
+Aparentemente, a relação observada é que, quanto maior o peso da pessoa, maior é sua altura. Entretanto existe dois valores que distoam dessa relação uma delas com o mesmo peso de 65kg porem maior do que a outra de mesmo peso, e uma pesando acima de 80kg porém mais baixa do que a pessoa que pesa proximo a 80kg.
