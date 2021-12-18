@@ -1,14 +1,17 @@
 ---
 title: "Atividade Avaliativa 1"
-Autor: "Andrei Paraizo dos Santos"
-Date: "Estatistica 2021.1"
+author: "Andrei Paraizo dos Santos </br>"
+date: "Estatistica 2021.1"
+output: github_document
+---
+
 
 ```{r}
 library(tidyverse)
-library(readr)
+
 frango_dieta <- read_csv("dados/brutos/frango_dieta.csv")
 View(frango_dieta)
-library(readr)
+
 dados_co2 <- read_csv("dados/brutos/dados_co2.csv")
 View(dados_co2)
 
@@ -96,86 +99,6 @@ Analisando esse gráfico, é possível perceber que a disposição dos valores �
 **Questao 6**
 **a** 
 
-**b** Não está no formato tidy, pois, as colunas não representam variáveis, nesse caso, acredito que deveria haver 3 colunas (ano, mês, co2).
 
-**c** Organize o conjunto de dados na forma organizada com o seguinte código
-```{r}
-dados_co2 %>%                
-  pivot_longer (
-    ! ano ,              
-     names_to  =  " ano " ,    
-     values_to  =  " dez "   
-  )
-  
-```
 
-**d** Produzi e salvei o arquivo com o seguinte código
-```{r}
-"co2_tidy  <-  dados_co2 % > %
-  pivot_longer (! ano , names_to  = mes , values_to  = ppm)
-write_csv ( co2_tidy , dados / tidy / co2_tidy.csv.)"
-```
 
-**e** Salvei na variável co2_tidy com o seguinte código
-```{r}
-"co2_tidy  <- read_csv (  dados / tidy / co2_tidy.csv  )"
-```
-
-```{r}
-"co2_tidy % > %
-  group_by ( ano )% > %
-  resumir ( mídia  = redondo (média ( ppm ), 2 ))% > %
-  ggplot (aes ( ano , media , group  =  1 )) +  
-  geom_line ( color  =   blue  , size  =  1 )"
-
-```
-
-Observando o gráfico, é possível perceber que a variável ppm aumentou com o passar dos anos.
-
-**Questao 7**
-**a** Criei um tibble da seguinte forma:
-```{r}
-"tabela_tibble  <- tibble (
-   ~ nome ,        ~ altura , ~ peso ,
-    Ana  ,        155 ,      50 ,
-    Ludmilla  ,   158 ,      61 ,
-    Cristina  ,   162 ,      65 ,
-    Tereza  ,     168 ,      68 ,
-    Patrícia  ,   170 ,      69,
-    Mariana  ,    170 ,      65 ,
-    Ana Paula  , 172 ,      82 ,
-    Dirce  ,      173 ,      79 
-)"
-```
-  
-**b** A variável nome é uma variável qualitativa nominal
-A variável altura é uma variável quantitativa contínua
-A variável peso é uma variável quantitativa contínua
-
-**c** Calculei a média, mediana e desvio padrão da altura e peso usando os seguintes códigos
-```{r}
-"média ( tabela_tibble $ peso )
-mediana ( tabela_tibble $ peso )
-sd ( tabela_tibble $ peso )
-
-média ( tabela_tibble $ altura )
-mediana ( tabela_tibble $ altura )
-sd ( tabela_tibble $ altura )
-Para altura encontrei
-- média = 166
-- mediana = 169
-
-desvio padrao = 6,78233
-Para peso encontrei
-- média = 67,375
- mediana = 66,5
-- desvio padrao = 10,04188"
-```
-
-**d** Execute o seguinte código
-```{r}
-"plot ( tabela_tibble $ peso , tabela_tibble $ altura )"
-
-```
-
-Aparentemente, a relação observada é que, quanto maior o peso da pessoa, maior é sua altura. Entretanto existe dois valores que distoam dessa relação uma delas com o mesmo peso de 65kg porem maior do que a outra do mesmo peso, e uma pesando acima de 80kg porém mais baixa do que uma pessoa que pesa proximo a 80kg.
